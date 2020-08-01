@@ -25,4 +25,13 @@ Vagrant.configure("2") do |config|
             "--paravirtprovider", "kvm",
         ]
     end
+
+    # Initial launch script
+    config.vm.provision :shell, :inline => <<-EOL
+        # Desktop Environment
+        sudo apt install -y ubuntu-desktop gnome-tweak-tool
+        # Change the time zone to Japan time
+        sudo timedatectl set-timezone Asia/Tokyo
+    EOL
+
 end
